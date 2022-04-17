@@ -13,6 +13,10 @@ describe("Class NoteManager Tests", () => {
   it('Test addNote', () => {
     expect(noteManager.addNote("NoteManagerTest", "Title Test", "Body Test", "green")).to.eql(true)
   })
+  // Añade una nota con un color invalido
+  it('Test addNote', () => {
+    expect(noteManager.addNote("NoteManagerTest", "Title Test Color", "Body Test", "verde")).to.eql(true)
+  })
   // Intenta añadir la misma nota
   it('Test addNote existing', () => {
     expect(noteManager.addNote("NoteManagerTest", "Title Test", "Body Test", "green")).to.eql(false)
@@ -39,6 +43,10 @@ describe("Class NoteManager Tests", () => {
   // Lee una nota
   it('Test readNote', () => {
     expect(noteManager.readNote("NoteManagerTest", "Title Test")).to.eql(true)
+  })
+  // Lee una nota con un color invalido
+  it('Test readNote', () => {
+    expect(noteManager.readNote("NoteManagerTest", "Title Test Color")).to.eql(true)
   })
   // Lee una nota no existente
   it('Test readNote No existing', () => {

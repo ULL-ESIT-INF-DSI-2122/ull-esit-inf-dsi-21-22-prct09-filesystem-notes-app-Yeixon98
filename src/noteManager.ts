@@ -1,6 +1,5 @@
 import { Note } from "./note";
 import * as fs from "fs";
-import { TypeColor } from "./types";
 
 const chalk = require("chalk");
 
@@ -20,7 +19,7 @@ export class NoteManager {
    * @param body Contenido de la nota
    * @param color Color de la nota
    */
-  addNote(user: string, title: string, body: string, color: TypeColor) {
+  addNote(user: string, title: string, body: string, color: string) {
     if (!fs.existsSync(`database/${user}`)) {
       console.log(`${user} directory will be created`);
       fs.mkdirSync(`database/${user}`, {
@@ -61,7 +60,7 @@ export class NoteManager {
    * @param body Contenido nuevo de la nota
    * @param color Color de la nota
    */
-  modifyNote(user: string, title: string, body: string, color: TypeColor) {
+  modifyNote(user: string, title: string, body: string, color: string) {
     if (fs.existsSync(`database/${user}/${title}.json`)) {
       const note = new Note(title, body, color);
       fs.writeFileSync(`database/${user}/${title}.json`, note.print());
@@ -84,7 +83,11 @@ export class NoteManager {
         const contentNote = fs.readFileSync(`database/${user}/${notes}`);
         const JSONote = JSON.parse(contentNote.toString());
         const note = new Note(JSONote.title, JSONote.body, JSONote.color);
-        console.log(chalk.keyword(note.getColor())(note.getTitle()));
+        try {
+          console.log(chalk.keyword(note.getColor())(note.getTitle()));
+        } catch (_) {
+          console.log(chalk.cyan(note.getTitle()));
+        }
       });
       return true;
     } else {
@@ -104,8 +107,13 @@ export class NoteManager {
       const contentNote = fs.readFileSync(`database/${user}/${title}.json`);
       const JSONote = JSON.parse(contentNote.toString());
       const note = new Note(JSONote.title, JSONote.body, JSONote.color);
-      console.log(chalk.keyword(note.getColor())(note.getTitle()));
-      console.log(chalk.keyword(note.getColor())(note.getBody()));
+      try {
+        console.log(chalk.keyword(note.getColor())(note.getTitle()));
+        console.log(chalk.keyword(note.getColor())(note.getBody()));
+      } catch (_) {
+        console.log(chalk.cyan(note.getTitle()));
+        console.log(chalk.cyan(note.getBody()));
+      }
       return true;
     } else {
       console.log(chalk.red("Note not found"));
