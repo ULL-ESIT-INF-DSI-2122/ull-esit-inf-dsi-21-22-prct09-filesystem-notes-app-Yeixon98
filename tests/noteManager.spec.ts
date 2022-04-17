@@ -9,11 +9,6 @@ describe("Class NoteManager Tests", () => {
     expect(noteManager).instanceOf(NoteManager);
   });
 
-  it("Clear data users", () => {
-    noteManager.clearDataUser("NoteManagerTest")
-    noteManager.clearDataUser("NoteManagerTest_")
-  })
-
   // Añade una nota
   it('Test addNote', () => {
     expect(noteManager.addNote("NoteManagerTest", "Title Test", "Body Test", "green")).to.eql(true)
@@ -58,4 +53,9 @@ describe("Class NoteManager Tests", () => {
   it('Test removeNote NO existing', () => {
     expect(noteManager.removeNote("NoteManagerTest", "No Title Test")).to.eql(false)
   }) 
+
+  it("Clear data users", () => {
+    noteManager.clearDataUser("NoteManagerTest")
+    noteManager.clearDataUser("NoteManagerTest_")
+  })
 });
