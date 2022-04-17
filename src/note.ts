@@ -1,3 +1,5 @@
+import { TypeColor } from "./types";
+
 /**
  * Clase que representa una nota
  */
@@ -8,7 +10,7 @@ export class Note {
    * @param body Contenido de la nota
    * @param color Color de la nota
    */
-  constructor(private title: string, private body: string, private color: string) {}
+  constructor(private title: string, private body: string, private color: TypeColor) {}
 
   /**
    * Se obtiene el titulo de la nota
@@ -30,7 +32,7 @@ export class Note {
    * Se obtiene el color de la nota
    * @returns Color de la nota
    */
-  getColor(): string {
+  getColor(): TypeColor {
     return this.color;
   }
 
