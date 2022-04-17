@@ -7,10 +7,6 @@ const chalk = require("chalk");
  * Clase que se encarga de controlar las funciones con las notas
  */
 export class NoteManager {
-  /**
-   * Constructor de la clase
-   */
-  constructor() {}
 
   /**
    * Añadir una nota respecto a un usuario en especifico
